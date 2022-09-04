@@ -48,3 +48,28 @@ kubectl apply -f aks-helloworld-two.yaml --namespace ingress-test
 ```azcli
 kubectl apply -f hello-world-ingress.yaml --namespace ingress-test
 ```
+
+## Testing
+Now, let’s launch a pod to validate the configuration.
+
+```azcli
+kubectl run -it --rm aks-ingress-test --image=debian --namespace ingress-test
+```
+
+## Update
+```
+apt-get update && apt-get install -y curl
+
+curl -L -H "Host: mysub.mydomain.com" http://10.1.0.200
+
+```
+
+## Prepare 
+
+```azcli
+az network public-ip create -g rg-appg-ingress-test -l eastus2 -n pip-appg-ingress-test --sku Standard
+
+az network application-gateway create --name azappg-appg-ingress-test -g rg-appg-ingress-test -l eastus2 --sku Standard_v2 --public-ip-address pip-appg-ingress-test --vnet-name vnet-ingress-test --subnet appg --servers 10.1.0.200
+
+```
+
