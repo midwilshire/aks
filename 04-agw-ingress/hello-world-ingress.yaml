@@ -15,7 +15,7 @@ spec:
       port:
         number: 80
   rules:
-  - host: $DOMAIN_NAME
+  - host: mysub.mydomain.com
     http:
       paths:
       - backend:

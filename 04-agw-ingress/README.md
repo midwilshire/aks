@@ -36,3 +36,15 @@ kubectl --namespace ingress get services -o wide -w nginx-ingress-ingress-nginx-
 kubectl create ns ingress-test
 ```
 
+## Run demo applications
+
+```azcli
+kubectl apply -f aks-helloworld-one.yaml --namespace ingress-test
+kubectl apply -f aks-helloworld-two.yaml --namespace ingress-test
+```
+
+## Create an ingress route
+
+```azcli
+kubectl apply -f hello-world-ingress.yaml --namespace ingress-test
+```
